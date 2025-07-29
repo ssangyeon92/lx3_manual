@@ -90,7 +90,6 @@
     margin-top: 10px;
     font-style: italic;
   }
-  /* ✅ 강조 안내문 스타일 */
   .notice-box {
     background: #fff8e6;
     color: #333;
@@ -109,6 +108,22 @@
   }
   .notice-box li {
     margin-bottom: 8px;
+    list-style: none;
+    position: relative;
+    padding-left: 25px;
+  }
+  .notice-box li::before {
+    content: "⭐";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .notice-subtext {
+    display: block;
+    margin-left: 25px;
+    font-weight: normal;
+    font-size: 0.95rem;
+    color: #444;
   }
 </style>
 </head>
@@ -132,12 +147,10 @@
       <p>도어 잠금 버튼 누르고 원격시동버튼을 길게 눌러 원격 시동</p>
       <p>→ 키 옆면의 원하는 방향 버튼을 꾹 눌러 출차</p>
       <p>→ 승차 후 정상 주행</p>
-
       <strong>시동이 켜져있을때(주차시)</strong>
       <p>위치 정렬하고 P단 변속후 '주차 뷰 버튼'을 길게 눌러 모드진입</p>
       <p>→ 차에서 내린 후(필요시 미리 사이드미러 접기) 시동키 옆면의 원하는 방향 버튼을 꾹 눌러 주차</p>
       <p>→ 키의 잠금버튼 누르고 원격시동버튼을 짧게 눌러 시동 off (반드시 시동 off 해주세요!!)</p>
-
       <p class="note">* 벽 옆에 주차시 대략 사이드미러 길이 정도의 공간이 확보되어야 주차/출차 가능</p>
     </div>
   </div>
@@ -173,18 +186,22 @@
   <div id="btn7" class="toggle-btn" onclick="toggleText('btn7','box7','사고시 비상연락망')">사고시 비상연락망</div>
   <div id="box7" class="toggle-content">
     <div class="contact-box">
-      소내 화재(119) : <a href="tel:0313683119">031-368-3119</a><br>
+      소내 화재 : <a href="tel:0313683119">031-368-3119</a><br>
       소내 구급차 : <a href="tel:0313688282">031-368-8282</a><br><br>
+      현대 해상 콜센터 : <a href="tel:15885656">1588-5656</a><br><br>
+      임시번호 : ㅇㅇㅇㅇ</a><br>
+      차대번호 : ㅇㅇㅇㅇ</a><br>
+      계약번호 : ㅇㅇㅇㅇ</a><br><br>
       조준호 팀장 : <a href="tel:01091398053">010-9139-8053</a><br>
       이인수 책임 (안전) : <a href="tel:01068098039">010-6809-8039</a><br>
       천상연 책임 (관리) : <a href="tel:01088151785">010-8815-1785</a>
     </div>
   </div>
 
-  <!-- ✅ 강조 문구 박스 -->
   <div class="notice-box">
     <ul>
-      <li>⭐ 사외 주차시 <strong>운전자 연락처 기입</strong> (종이/펜 차량 콘솔박스 내 비치)</li>
+      <li>사외 주차시 <strong>운전자 연락처 기입</strong><br>
+        <span class="notice-subtext">(종이/펜 차량 콘솔박스 내 비치)</span></li>
       <li>⛽ <strong>반납시 주유 요망</strong></li>
       <li>📝 <strong>운행일지 작성 철저</strong></li>
     </ul>
