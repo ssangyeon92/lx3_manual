@@ -66,6 +66,29 @@
     text-decoration:none;
     font-weight:700;
   }
+  /* ✅ 추가: 안내 박스 스타일 */
+  .info-box {
+    background: #fff;
+    border-left: 5px solid #007BFF;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .info-box strong {
+    color: #0056c7;
+  }
+  .info-box p {
+    margin: 8px 0;
+  }
+  .info-box .note {
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 10px;
+    font-style: italic;
+  }
 </style>
 </head>
 <body>
@@ -82,6 +105,12 @@
   <div id="box2" class="toggle-content">
     <div class="video-wrapper">
       <iframe id="iframe2" src="https://www.youtube.com/embed/zJEybH7c8qY?start=20&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    <!-- ✅ 안내 문구 추가 -->
+    <div class="info-box">
+      <p><strong>시동이 꺼져있을때(출차시):</strong> 도어 잠금 버튼 누르고 원격시동버튼을 길게 눌러 원격 시동 → 키 옆면의 원하는 방향 버튼을 꾹 눌러 출차 → 승차 후 정상 주행</p>
+      <p><strong>시동이 켜져있을때(주차시):</strong> 위치 정렬하고 P단 변속후 '주차 뷰 버튼'을 길게 눌러 모드진입 → 차에서 내린 후 (필요시 미리 사이드미러 접기) 시동키 옆면의 원하는 방향 버튼을 꾹 눌러 주차 → 키의 잠금버튼 누르고 원격시동버튼을 짧게 눌러 시동 off (반드시 시동 off 해주세요!!)</p>
+      <p class="note">* 벽 옆에 주차시 대략 사이드미러 길이 정도의 공간이 확보되어야 주차 가능</p>
     </div>
   </div>
 
@@ -116,8 +145,6 @@
   <div id="btn7" class="toggle-btn" onclick="toggleText('btn7','box7','사고시 비상연락망')">사고시 비상연락망</div>
   <div id="box7" class="toggle-content">
     <div class="contact-box">
-      소방서 (소내) : <a href="tel:0313683119">031-368-3119</a><br>
-      구급대 (소내) : <a href="tel:0313688282">031-368-8282</a><br>
       조준호 팀장 : <a href="tel:01091398053">010-9139-8053</a><br>
       이인수 책임 (안전) : <a href="tel:01068098039">010-6809-8039</a><br>
       천상연 책임 (관리) : <a href="tel:01088151785">010-8815-1785</a>
