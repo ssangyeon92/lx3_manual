@@ -6,42 +6,47 @@
 <title>LX3 모니터링카 안내</title>
 <style>
   body {
-    font-family: "Apple SD Gothic Neo", Arial, sans-serif;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
     line-height: 1.8;
     margin: 0;
-    padding: 15px;
-    background-color: #f9f9f9;
+    padding: 20px;
+    background: linear-gradient(135deg, #f2f6ff, #e8ecf5);
   }
-
   .toggle-btn {
     display: block;
-    background: #007BFF;
-    color: white;
+    background: white;
+    color: #222;
     font-size: 1.1rem;
-    font-weight: bold;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 10px;
+    font-weight: 600;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 14px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background 0.3s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
   }
   .toggle-btn:hover {
-    background: #0056c7;
+    background: #f0f4ff;
+    transform: translateY(-2px);
   }
-
   .toggle-content {
     display: none;
     margin-bottom: 20px;
+    animation: slideDown 0.35s ease-out;
   }
-
-  /* 📱 iframe 비율 유지용 (16:9) */
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .video-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 비율 */
-    margin-top: 8px;
+    padding-bottom: 56.25%;
+    margin-top: 10px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
   }
   .video-wrapper iframe {
     position: absolute;
@@ -49,18 +54,15 @@
     height: 100%;
     left: 0;
     top: 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border: none;
   }
-
-  /* 모바일 환경 폰트/간격 조정 */
   @media (max-width: 600px) {
     body {
-      padding: 10px;
+      padding: 15px;
     }
     .toggle-btn {
       font-size: 1rem;
-      padding: 12px;
+      padding: 14px;
     }
   }
 </style>
@@ -89,24 +91,31 @@
     </div>
   </div>
 
-  <div id="btn4" class="toggle-btn" onclick="toggleVideo('btn4','box4','DCM(디지털 센터 미러)','https://www.youtube.com/embed/967mrQDKXhU?start=8')">DCM(디지털 센터 미러)</div>
+  <div id="btn4" class="toggle-btn" onclick="toggleVideo('btn4','box4','안마시트','https://www.youtube.com/embed/D-OqFuitGjU?start=25')">안마시트</div>
   <div id="box4" class="toggle-content">
     <div class="video-wrapper">
       <iframe id="iframe4" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn5" class="toggle-btn" onclick="toggleVideo('btn5','box5','차일드락(뒷좌석 창문/문이 안열려요!)','https://www.youtube.com/embed/AbSEYTZ6SrE?start=12')">차일드락(뒷좌석 창문/문이 안열려요!)</div>
+  <div id="btn5" class="toggle-btn" onclick="toggleVideo('btn5','box5','DCM(디지털 센터 미러)','https://www.youtube.com/embed/967mrQDKXhU?start=8')">DCM(디지털 센터 미러)</div>
   <div id="box5" class="toggle-content">
     <div class="video-wrapper">
       <iframe id="iframe5" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn6" class="toggle-btn" onclick="toggleVideo('btn6','box6','안마시트','https://www.youtube.com/embed/D-OqFuitGjU?start=25')">안마시트</div>
+  <div id="btn6" class="toggle-btn" onclick="toggleVideo('btn6','box6','차일드락(뒷좌석 창문/문이 안열려요!)','https://www.youtube.com/embed/AbSEYTZ6SrE?start=12')">차일드락(뒷좌석 창문/문이 안열려요!)</div>
   <div id="box6" class="toggle-content">
     <div class="video-wrapper">
       <iframe id="iframe6" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div id="btn7" class="toggle-btn" onclick="toggleText('btn7','box7','사고시 비상연락망')">사고시 비상연락망</div>
+  <div id="box7" class="toggle-content">
+    <div style="padding:15px; background:white; border-radius:14px; box-shadow:0 3px 10px rgba(0,0,0,0.08); text-align:center; font-weight:600;">
+      ㅇㅇㅇㅇㅇ
     </div>
   </div>
 </div>
@@ -116,17 +125,25 @@ function toggleVideo(btnId, boxId, title, url) {
   const btn = document.getElementById(btnId);
   const box = document.getElementById(boxId);
   const iframe = document.getElementById("iframe" + btnId.replace('btn',''));
-
   if (box.style.display === "block") {
-    // ✅ 접을 때: 비디오 정지
     box.style.display = "none";
     btn.textContent = title;
     iframe.src = "";
   } else {
-    // ✅ 펼칠 때: URL 재로딩 (설정된 초부터 재생)
     box.style.display = "block";
     btn.textContent = title + " (접기)";
     iframe.src = url;
+  }
+}
+function toggleText(btnId, boxId, title) {
+  const btn = document.getElementById(btnId);
+  const box = document.getElementById(boxId);
+  if (box.style.display === "block") {
+    box.style.display = "none";
+    btn.textContent = title;
+  } else {
+    box.style.display = "block";
+    btn.textContent = title + " (접기)";
   }
 }
 </script>
