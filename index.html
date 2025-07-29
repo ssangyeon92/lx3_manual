@@ -10,11 +10,12 @@
     line-height: 1.8;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(135deg, #f2f6ff, #e8ecf5);
+    background: linear-gradient(135deg, #e1e5ee, #d4d7df);
+    color: #222;
   }
   .toggle-btn {
     display: block;
-    background: white;
+    background: #f7f7f7;
     color: #222;
     font-size: 1.1rem;
     font-weight: 600;
@@ -23,21 +24,16 @@
     border-radius: 14px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
     transition: all 0.3s ease;
   }
   .toggle-btn:hover {
-    background: #f0f4ff;
+    background: #e0e3ea;
     transform: translateY(-2px);
   }
   .toggle-content {
     display: none;
     margin-bottom: 20px;
-    animation: slideDown 0.35s ease-out;
-  }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
   }
   .video-wrapper {
     position: relative;
@@ -46,7 +42,7 @@
     margin-top: 10px;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
   }
   .video-wrapper iframe {
     position: absolute;
@@ -56,85 +52,107 @@
     top: 0;
     border: none;
   }
-  @media (max-width: 600px) {
-    body {
-      padding: 15px;
-    }
-    .toggle-btn {
-      font-size: 1rem;
-      padding: 14px;
-    }
+  .contact-box {
+    padding:15px;
+    background:#f7f7f7;
+    border-radius:14px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.12);
+    text-align:center;
+    font-weight:600;
+    line-height:2;
+  }
+  .contact-box a {
+    color:#0056c7;
+    text-decoration:none;
+    font-weight:700;
   }
 </style>
 </head>
 <body>
 
 <div>
-  <div id="btn1" class="toggle-btn" onclick="toggleVideo('btn1','box1','Stay Mode (HEV 특화기능)','https://www.youtube.com/embed/-ZKqTgAKfDE?start=98')">Stay Mode (HEV 특화기능)</div>
+  <div id="btn1" class="toggle-btn" onclick="toggleVideo('btn1','box1','Stay Mode (HEV 특화기능)',1)">Stay Mode (HEV 특화기능)</div>
   <div id="box1" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe1" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe1" src="https://www.youtube.com/embed/-ZKqTgAKfDE?start=98&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn2" class="toggle-btn" onclick="toggleVideo('btn2','box2','원격주차','https://www.youtube.com/embed/zJEybH7c8qY?start=20')">원격주차</div>
+  <div id="btn2" class="toggle-btn" onclick="toggleVideo('btn2','box2','원격주차',2)">원격주차</div>
   <div id="box2" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe2" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe2" src="https://www.youtube.com/embed/zJEybH7c8qY?start=20&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn3" class="toggle-btn" onclick="toggleVideo('btn3','box3','무선 안드로이드오토/애플카플레이','https://www.youtube.com/embed/WYCbMPm2LwM')">무선 안드로이드오토/애플카플레이</div>
+  <div id="btn3" class="toggle-btn" onclick="toggleVideo('btn3','box3','무선 안드로이드오토/애플카플레이',3)">무선 안드로이드오토/애플카플레이</div>
   <div id="box3" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe3" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe3" src="https://www.youtube.com/embed/WYCbMPm2LwM?start=9&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn4" class="toggle-btn" onclick="toggleVideo('btn4','box4','안마시트','https://www.youtube.com/embed/D-OqFuitGjU?start=25')">안마시트</div>
+  <div id="btn4" class="toggle-btn" onclick="toggleVideo('btn4','box4','안마시트',4)">안마시트</div>
   <div id="box4" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe4" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe4" src="https://www.youtube.com/embed/D-OqFuitGjU?start=25&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn5" class="toggle-btn" onclick="toggleVideo('btn5','box5','DCM(디지털 센터 미러)','https://www.youtube.com/embed/967mrQDKXhU?start=8')">DCM(디지털 센터 미러)</div>
+  <div id="btn5" class="toggle-btn" onclick="toggleVideo('btn5','box5','DCM(디지털 센터 미러)',5)">DCM(디지털 센터 미러)</div>
   <div id="box5" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe5" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe5" src="https://www.youtube.com/embed/967mrQDKXhU?start=8&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div id="btn6" class="toggle-btn" onclick="toggleVideo('btn6','box6','차일드락(뒷좌석 창문/문이 안열려요!)','https://www.youtube.com/embed/AbSEYTZ6SrE?start=12')">차일드락(뒷좌석 창문/문이 안열려요!)</div>
+  <div id="btn6" class="toggle-btn" onclick="toggleVideo('btn6','box6','차일드락(뒷좌석 창문/문이 안열려요!)',6)">차일드락(뒷좌석 창문/문이 안열려요!)</div>
   <div id="box6" class="toggle-content">
     <div class="video-wrapper">
-      <iframe id="iframe6" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="iframe6" src="https://www.youtube.com/embed/AbSEYTZ6SrE?start=12&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
   <div id="btn7" class="toggle-btn" onclick="toggleText('btn7','box7','사고시 비상연락망')">사고시 비상연락망</div>
   <div id="box7" class="toggle-content">
-    <div style="padding:15px; background:white; border-radius:14px; box-shadow:0 3px 10px rgba(0,0,0,0.08); text-align:center; font-weight:600;">
-      ㅇㅇㅇㅇㅇ
+    <div class="contact-box">
+      소방서 (소내) : <a href="tel:0313683119">031-368-3119</a><br>
+      구급대 (소내) : <a href="tel:0313688282">031-368-8282</a><br>
+      조준호 팀장 : <a href="tel:01091398053">010-9139-8053</a><br>
+      이인수 책임 (안전) : <a href="tel:01068098039">010-6809-8039</a><br>
+      천상연 책임 (관리) : <a href="tel:01088151785">010-8815-1785</a>
     </div>
   </div>
 </div>
 
 <script>
-function toggleVideo(btnId, boxId, title, url) {
+const videoUrls = {
+  1: "https://www.youtube.com/embed/-ZKqTgAKfDE?start=98",
+  2: "https://www.youtube.com/embed/zJEybH7c8qY?start=20",
+  3: "https://www.youtube.com/embed/WYCbMPm2LwM?start=9",
+  4: "https://www.youtube.com/embed/D-OqFuitGjU?start=25",
+  5: "https://www.youtube.com/embed/967mrQDKXhU?start=8",
+  6: "https://www.youtube.com/embed/AbSEYTZ6SrE?start=12"
+};
+
+function toggleVideo(btnId, boxId, title, index) {
   const btn = document.getElementById(btnId);
   const box = document.getElementById(boxId);
-  const iframe = document.getElementById("iframe" + btnId.replace('btn',''));
+  const iframe = document.getElementById("iframe" + index);
+
   if (box.style.display === "block") {
+    // 접힐 때: iframe 리셋해서 재생시간 초기화
     box.style.display = "none";
     btn.textContent = title;
-    iframe.src = "";
+    iframe.src = videoUrls[index] + "&enablejsapi=1"; 
   } else {
+    // 펼칠 때: 자동재생
     box.style.display = "block";
     btn.textContent = title + " (접기)";
-    iframe.src = url;
+    iframe.src = videoUrls[index] + "&autoplay=1&enablejsapi=1";
   }
 }
+
 function toggleText(btnId, boxId, title) {
   const btn = document.getElementById(btnId);
   const box = document.getElementById(boxId);
