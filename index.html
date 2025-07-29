@@ -66,7 +66,6 @@
     text-decoration:none;
     font-weight:700;
   }
-  /* ✅ 추가: 안내 박스 스타일 */
   .info-box {
     background: #fff;
     border-left: 5px solid #007BFF;
@@ -79,15 +78,37 @@
   }
   .info-box strong {
     color: #0056c7;
+    display: block;
+    margin-top: 8px;
   }
   .info-box p {
-    margin: 8px 0;
+    margin: 6px 0;
   }
   .info-box .note {
     font-size: 0.9rem;
     color: #444;
     margin-top: 10px;
     font-style: italic;
+  }
+  /* ✅ 강조 안내문 스타일 */
+  .notice-box {
+    background: #fff8e6;
+    color: #333;
+    padding: 16px;
+    margin-top: 25px;
+    border-radius: 12px;
+    border: 1px solid #ffd27f;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    line-height: 1.8;
+  }
+  .notice-box ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+  .notice-box li {
+    margin-bottom: 8px;
   }
 </style>
 </head>
@@ -106,11 +127,18 @@
     <div class="video-wrapper">
       <iframe id="iframe2" src="https://www.youtube.com/embed/zJEybH7c8qY?start=20&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
-    <!-- ✅ 안내 문구 추가 -->
     <div class="info-box">
-      <p><strong>시동이 꺼져있을때(출차시):</strong> 도어 잠금 버튼 누르고 원격시동버튼을 길게 눌러 원격 시동 → 키 옆면의 원하는 방향 버튼을 꾹 눌러 출차 → 승차 후 정상 주행</p>
-      <p><strong>시동이 켜져있을때(주차시):</strong> 위치 정렬하고 P단 변속후 '주차 뷰 버튼'을 길게 눌러 모드진입 → 차에서 내린 후 (필요시 미리 사이드미러 접기) 시동키 옆면의 원하는 방향 버튼을 꾹 눌러 주차 → 키의 잠금버튼 누르고 원격시동버튼을 짧게 눌러 시동 off (반드시 시동 off 해주세요!!)</p>
-      <p class="note">* 벽 옆에 주차시 대략 사이드미러 길이 정도의 공간이 확보되어야 주차 가능</p>
+      <strong>시동이 꺼져있을때(출차시)</strong>
+      <p>도어 잠금 버튼 누르고 원격시동버튼을 길게 눌러 원격 시동</p>
+      <p>→ 키 옆면의 원하는 방향 버튼을 꾹 눌러 출차</p>
+      <p>→ 승차 후 정상 주행</p>
+
+      <strong>시동이 켜져있을때(주차시)</strong>
+      <p>위치 정렬하고 P단 변속후 '주차 뷰 버튼'을 길게 눌러 모드진입</p>
+      <p>→ 차에서 내린 후(필요시 미리 사이드미러 접기) 시동키 옆면의 원하는 방향 버튼을 꾹 눌러 주차</p>
+      <p>→ 키의 잠금버튼 누르고 원격시동버튼을 짧게 눌러 시동 off (반드시 시동 off 해주세요!!)</p>
+
+      <p class="note">* 벽 옆에 주차시 대략 사이드미러 길이 정도의 공간이 확보되어야 주차/출차 가능</p>
     </div>
   </div>
 
@@ -145,10 +173,21 @@
   <div id="btn7" class="toggle-btn" onclick="toggleText('btn7','box7','사고시 비상연락망')">사고시 비상연락망</div>
   <div id="box7" class="toggle-content">
     <div class="contact-box">
+      소내 화재(119) : <a href="tel:0313683119">031-368-3119</a><br>
+      소내 구급차 : <a href="tel:0313688282">031-368-8282</a><br><br>
       조준호 팀장 : <a href="tel:01091398053">010-9139-8053</a><br>
       이인수 책임 (안전) : <a href="tel:01068098039">010-6809-8039</a><br>
       천상연 책임 (관리) : <a href="tel:01088151785">010-8815-1785</a>
     </div>
+  </div>
+
+  <!-- ✅ 강조 문구 박스 -->
+  <div class="notice-box">
+    <ul>
+      <li>⭐ 사외 주차시 <strong>운전자 연락처 기입</strong> (종이/펜 차량 콘솔박스 내 비치)</li>
+      <li>⛽ <strong>반납시 주유 요망</strong></li>
+      <li>📝 <strong>운행일지 작성 철저</strong></li>
+    </ul>
   </div>
 </div>
 
@@ -168,12 +207,10 @@ function toggleVideo(btnId, boxId, title, index) {
   const iframe = document.getElementById("iframe" + index);
 
   if (box.style.display === "block") {
-    // 접힐 때: iframe 리셋해서 재생시간 초기화
     box.style.display = "none";
     btn.textContent = title;
     iframe.src = videoUrls[index] + "&enablejsapi=1"; 
   } else {
-    // 펼칠 때: 자동재생
     box.style.display = "block";
     btn.textContent = title + " (접기)";
     iframe.src = videoUrls[index] + "&autoplay=1&enablejsapi=1";
