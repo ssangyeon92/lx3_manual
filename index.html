@@ -19,7 +19,7 @@
     color: #222;
     font-size: 1.1rem;
     font-weight: 600;
-    padding: 13.5px;
+    padding: 14px;
     margin: 12px 0;
     border-radius: 14px;
     cursor: pointer;
@@ -100,10 +100,23 @@
     font-weight: 600;
     font-size: 1rem;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    line-height: 1.4;
   }
-  .notice-box p {
-    margin: 4px 0;
-    line-height: 1.3;
+  .notice-box ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+  .notice-box li {
+    margin-bottom: 8px;
+    list-style: none;
+    position: relative;
+    padding-left: 25px;
+  }
+  .notice-box li::before {
+    content: "⭐";
+    position: absolute;
+    left: 0;
+    top: 0;
   }
   .notice-subtext {
     display: block;
@@ -111,7 +124,6 @@
     font-weight: normal;
     font-size: 0.95rem;
     color: #444;
-    margin-top: 1px;
   }
 </style>
 </head>
@@ -177,9 +189,9 @@
       소내 화재 : <a href="tel:0313683119">031-368-3119</a><br>
       소내 구급차 : <a href="tel:0313688282">031-368-8282</a><br><br>
       현대 해상 콜센터 : <a href="tel:15885656">1588-5656</a><br><br>
-      임시번호 : ㅇㅇㅇㅇ<br>
-      차대번호 : ㅇㅇㅇㅇ<br>
-      계약번호 : ㅇㅇㅇㅇ<br><br>
+      임시번호 : ㅇㅇㅇㅇ</a><br>
+      차대번호 : ㅇㅇㅇㅇ</a><br>
+      계약번호 : ㅇㅇㅇㅇ</a><br><br>
       조준호 팀장 : <a href="tel:01091398053">010-9139-8053</a><br>
       이인수 책임 (안전) : <a href="tel:01068098039">010-6809-8039</a><br>
       천상연 책임 (관리) : <a href="tel:01088151785">010-8815-1785</a>
@@ -201,7 +213,7 @@ const videoUrls = {
   3: "https://www.youtube.com/embed/WYCbMPm2LwM?start=9",
   4: "https://www.youtube.com/embed/D-OqFuitGjU?start=25",
   5: "https://www.youtube.com/embed/967mrQDKXhU?start=8",
-  6: "https://www.youtube.com/embed/AbSEYTZ6SrE?start=12"a
+  6: "https://www.youtube.com/embed/AbSEYTZ6SrE?start=12"
 };
 
 function toggleVideo(btnId, boxId, title, index) {
