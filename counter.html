@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>버튼 시간 측정</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    #time-display {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    #counter {
+      margin-top: 80px;
+      font-size: 1.2rem;
+    }
+
+    #tap-button {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #tap-button:active {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div id="time-display">
+    총 시간: 0.000초<br>
+    평균 클릭 시간: 0.000초
+  </div>
+  <div id="counter">눌린 횟수: 0 / 100</div>
+  <button id="tap-button">눌러주세요</button>
+
+  <script>
+    let startTime = null;
+    let count = 0;
+    let running = false;
+    let intervalId = null;
+
+    const button = document.getElementById("tap-button");
+    const timeDisplay = document.getElementById("time-display");
+    const counterDisplay = document.getElementById("counter");
+
+    function updateDisplay() {
+      if (!running) return;
+      const now = performance.now();
+      const elapsed = (now - startTime) / 1000;
+      const avg = count > 0 ? elapsed / count : 0;
+      timeDisplay.innerHTML = 
+        `총 시간: ${elapsed.toFixed(3)}초<br>` +
+        `평균 클릭 시간: ${avg.toFixed(3)}초`;
+    }
+
+    button.addEventListener("click", () => {
+      if (count === 0) {
+        startTime = performance.now();
+        running = true;
+        intervalId = setInterval(updateDisplay, 50); // 0.05초마다 갱신
+      }
+
+      count++;
+      counterDisplay.textContent = `눌린 횟수: ${count} / 100`;
+
+      if (count === 100) {
+        running = false;
+        clearInterval(intervalId);
+
+        const endTime = performance.now();
+        const elapsed = (endTime - startTime) / 1000;
+        const avg = elapsed / count;
+        timeDisplay.innerHTML = 
+          `총 시간: ${elapsed.toFixed(3)}초<br>` +
+          `평균 클릭 시간: ${avg.toFixed(3)}초`;
+        button.disabled = true;
+        button.textContent = "완료됨";
+      }
+    });
+  </script>
+</body>
+</html>
