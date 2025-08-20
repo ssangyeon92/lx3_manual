@@ -10,6 +10,7 @@
       padding: 0;
       font-family: sans-serif;
       text-align: center;
+      background: #fff;
     }
 
     #time-display {
@@ -17,26 +18,43 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      line-height: 1.6;
-    }
-
-    #total-time {
-      font-size: 3rem;   /* 총 시간 크게 */
+      font-size: 3rem;
       font-weight: bold;
     }
 
-    #avg-time {
-      font-size: 1.3rem; /* 평균 시간 보통 */
+    #counter {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: bold;
+      color: black;
+      transition: color 0.2s linear;
     }
 
-    #counter {
-      margin-top: 120px;
-      font-size: 1.3rem;
+    #progress-container {
+      position: fixed;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 25px;
+      background: #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4CAF50, #FF0000);
+      transition: width 0.2s ease;
     }
 
     #tap-button {
       position: fixed;
-      bottom: 100px;  /* 버튼을 더 위로 올림 */
+      bottom: 160px;  /* 버튼을 60px 더 올림 */
       left: 50%;
       transform: translateX(-50%);
       padding: 20px 40px;
@@ -54,11 +72,14 @@
   </style>
 </head>
 <body>
-  <div id="time-display">
-    <div id="total-time">총 시간: 0.000초</div>
-    <div id="avg-time">평균 클릭 시간: 0.000초</div>
-  </div>
+  <div id="time-display">0.000초</div>
   <div id="counter">눌린 횟수: 0 / 100</div>
+
+  <!-- 게이지 바 -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
   <button id="tap-button">눌러주세요</button>
 
   <script>
@@ -68,17 +89,29 @@
     let intervalId = null;
 
     const button = document.getElementById("tap-button");
-    const totalTimeEl = document.getElementById("total-time");
-    const avgTimeEl = document.getElementById("avg-time");
+    const timeDisplay = document.getElementById("time-display");
     const counterDisplay = document.getElementById("counter");
+    const progressBar = document.getElementById("progress-bar");
 
     function updateDisplay() {
       if (!running) return;
       const now = performance.now();
       const elapsed = (now - startTime) / 1000;
-      const avg = count > 0 ? elapsed / count : 0;
-      totalTimeEl.textContent = `총 시간: ${elapsed.toFixed(3)}초`;
-      avgTimeEl.textContent = `평균 클릭 시간: ${avg.toFixed(3)}초`;
+      timeDisplay.textContent = `${elapsed.toFixed(3)}초`;
+    }
+
+    function updateCounterColor(count) {
+      // 0 → 검정, 100 → 빨강
+      const ratio = count / 100;
+      const r = Math.floor(0 + (255 - 0) * ratio);   
+      const g = 0;
+      const b = 0;
+      counterDisplay.style.color = `rgb(${r},${g},${b})`;
+    }
+
+    function updateProgress(count) {
+      const percent = (count / 100) * 100;
+      progressBar.style.width = `${percent}%`;
     }
 
     button.addEventListener("click", () => {
@@ -90,6 +123,8 @@
 
       count++;
       counterDisplay.textContent = `눌린 횟수: ${count} / 100`;
+      updateCounterColor(count);
+      updateProgress(count);
 
       if (count === 100) {
         running = false;
@@ -97,9 +132,8 @@
 
         const endTime = performance.now();
         const elapsed = (endTime - startTime) / 1000;
-        const avg = elapsed / count;
-        totalTimeEl.textContent = `총 시간: ${elapsed.toFixed(3)}초`;
-        avgTimeEl.textContent = `평균 클릭 시간: ${avg.toFixed(3)}초`;
+        timeDisplay.textContent = `${elapsed.toFixed(3)}초`;
+
         button.disabled = true;
         button.textContent = "완료됨";
       }
